@@ -5,22 +5,24 @@ import projetobanco.contas.Conta;
 import projetobanco.contas.ContaCorrente;
 import projetobanco.contas.ContaPoupanca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        List<Conta> contas = new ArrayList<Conta>();
+
         Cliente gabriel = new Cliente();
         gabriel.setNome("Gabriel");
 
         Conta cc = new ContaCorrente(gabriel);
         Conta cp = new ContaPoupanca(gabriel);
 
-        cc.depositar(100);
+        contas.add(cc);
+        contas.add(cp);
 
-        cc.imprimirExtrato();
-        cp.imprimirExtrato();
+        Banco banco = new Banco("ASUV", contas);
 
-        cc.transferir(100, cp);
-
-        cc.imprimirExtrato();
-        cp.imprimirExtrato();
+        banco.imprimirContas();
     }
 }
